@@ -14,6 +14,7 @@ vol1()
 		echo "Now installing volatility!"
 	fi
 }
+vol1
 
 while true
 do
@@ -22,7 +23,6 @@ do
 	echo -e "1 - imageinfo \n2 - pslist\n3 - connscan\n4 - mftparser <file>\n5 - hashdump\n6 - cmdscan\n7 - <enter PID to check if it exists!>\n8- exit menu"
 	read v
 
-	vol1
 # Function listing options for the volatility tool.
 volopt()
 {
