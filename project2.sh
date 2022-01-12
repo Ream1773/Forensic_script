@@ -28,39 +28,54 @@ volopt()
 {
 	case $v in
 		1)
-		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f memory.vmem imageinfo
+		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f $file_name imageinfo
 		;;
 		
 		2)
-		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f memory.vmem pslist
+		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f $file_name pslist
 		;;
 	
 		3)
-		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f memory.vmem connscan
+		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f $file_name connscan
 		;;
 
 		4)
 		read p
-		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f memory.vmem mftparser $p
+		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f $file_name mftparser $p
 		;;
 
 		5)
-		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f memory.vmem hashdump --output-file=$PWD/hashes.txt
+		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f $file_name hashdump --output-file=$PWD/hashes.txt
 		cat hashes.txt
 		;;
 
 		6)
-		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f memory.vmem cmdscan
+		cd volatility_2.6_lin64_standalone && ./volatility_2.6_lin64_standalone -f $file_name cmdscan
 		;;
 
 		#7)
 		#read n
-		#./volatility_2.6_lin64_standalone -f memory.vmem pslist | grep $n
+		#./volatility_2.6_lin64_standalone -f memory.vmem pslist | grep $n | 
 
 		8)
-		break
+		exit 1
 		;;
 	esac
 }
 volopt
 done
+brute()
+{
+	if [[ $v == '5' ]]
+	then
+		hashcat -a 0 -m 5600 $PWD/hashes.txt
+}
+usage()
+{
+	if [[ $# -ne 1 ]]
+	then
+		echo "Usage: ./project2.sh <file name>"
+		exit 1
+	fi
+	file_name=$1
+}
