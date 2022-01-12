@@ -55,8 +55,9 @@ volopt()
 
 		#7)
 		#read n
-		#./volatility_2.6_lin64_standalone -f memory.vmem pslist | grep $n | 
-
+		#./volatility_2.6_lin64_standalone -f $file_name pslist | grep $n | 
+		#;;
+		
 		8)
 		exit 1
 		;;
@@ -69,6 +70,8 @@ brute()
 	if [[ $v == '5' ]]
 	then
 		hashcat -a 0 -m 5600 $PWD/hashes.txt
+		echo -e "The brute forced hashes are" $(cat hashes.txt)\n
+	fi
 }
 usage()
 {
