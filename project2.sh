@@ -148,7 +148,7 @@ fi
 
 brute()
 {
-	hashcat -a 0 -m 5600 $PWD/hashes.txt -o cracked.txt
+	john --format=NT $PWD/hashes.txt -o cracked.txt
 	echo -e "The brute forced hashes are $(cat cracked.txt)\n"
 }
 
