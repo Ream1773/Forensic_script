@@ -79,7 +79,7 @@ volopt()
 
 		5)
 		./volatility_2.6_lin64_standalone -f $file_name hashdump --output-file=$PWD/hashes.txt
-		cat hashes.txt
+		#cat hashes.txt
 		;;
 
 		6)
@@ -106,6 +106,7 @@ done
 str()
 {
 	strings $file_name > strout.txt	
+	echo "String output created 'strout.txt'"
 }
 
 # Function that asks the user what tool they would like to use
